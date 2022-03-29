@@ -23,7 +23,7 @@ namespace Framework.Services
         public StudentRegistration DeleteRegistration(int Id)
         {
             var rgname = _sMUnitOfWork.StudentRegistrationRepository.GetById(Id);
-            _sMUnitOfWork.StudentRegistrationRepository.Remove(Id);
+            _sMUnitOfWork.StudentRegistrationRepository.Remove(rgname);
             _sMUnitOfWork.Save();
             return rgname;
         }
