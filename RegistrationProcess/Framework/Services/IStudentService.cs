@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Framework.Services
 {
-  public  interface IStudentService
+  public  interface IStudentService:IDisposable
    {
         void AddStudent(Student student);
-        Student Deleteint(int Id);
+        Student Delete(int Id);
         void EditStudent(Student student);
         Student GetStudent(int Id);
         (IList<Student> students, int total, int totalDisplay) GetStudents(int pageindex, int Pagesize,

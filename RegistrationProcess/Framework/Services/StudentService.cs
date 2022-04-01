@@ -20,7 +20,7 @@ namespace Framework.Services
 
         }
 
-        public Student Deleteint(int Id)
+        public Student Delete(int Id)
         {
             var delete = _sMUnitOfWork.StudentRepository.GetById(Id);
             _sMUnitOfWork.StudentRepository.Remove(delete);

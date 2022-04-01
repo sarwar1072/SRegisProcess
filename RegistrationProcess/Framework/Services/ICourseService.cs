@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Framework.Services
 {
-   public interface ICourseService
+   public interface ICourseService: IDisposable
     {
         void AddCourse(Course course);
         Course Delete(int Id);

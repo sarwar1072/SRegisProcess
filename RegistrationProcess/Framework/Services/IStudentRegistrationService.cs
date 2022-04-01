@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Framework.Services
 {
-   public interface IStudentRegistrationService
+   public interface IStudentRegistrationService:IDisposable
     {
         (IList<StudentRegistration> studentRegistrations, int total, int totalDisplay) GetStudentRegistrations(int pageindex,
                                                                           int Pagesize,

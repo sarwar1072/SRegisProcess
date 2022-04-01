@@ -1,0 +1,84 @@
+﻿@model EditCourse
+
+@{ ViewData["Title"] = "Edit Course"; }
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">Update Group</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row justify-content-md-center">
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Update Course</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <partial name="_ActionMessage" model="@Model.Response" />
+                        <form asp-area="Admin" asp-controller="Course" asp-action="EditCourse" method="post" class="form-horizontal">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" />
+                            <div class="form-group">
+                                <label asp-for="Title" class="col-md-2 control-label">Course Title</label>
+                                <div class="col-md-10">
+                                    <input asp-for="Title" class="form-control" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="SeatCount" class="col-md-2 control-label">Seat Count</label>
+                                <div class="col-md-10">
+                                    <input asp-for="SeatCount" class="form-control" />
+                                    <span asp-validation-for="SeatCount" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Fee" class="col-md-2 control-label"></label>
+                                <div class="col-md-10">
+                                    <input asp-for="Fee" class="form-control" />
+                                    <span asp-validation-for="Fee" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <input type="submit" class="btn btn-primary" value="Update" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+
+@section PageScripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+}

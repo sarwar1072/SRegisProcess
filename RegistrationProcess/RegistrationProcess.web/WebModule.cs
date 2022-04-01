@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using RegistrationProcess.web.Areas.Admin.Models.Course;
+using RegistrationProcess.web.Areas.Admin.Models.Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +18,12 @@ namespace RegistrationProcess.web
             _connectionString = connectionString;
             _migrationAssemblyName = migrationAssemblyName;
         }
-
         protected override void Load(ContainerBuilder builder)
         {
            
-            //builder.RegisterType<StudentModel>().AsSelf();
-            //builder.RegisterType<CourseModel>().AsSelf();
+            builder.RegisterType<StudentModel>().AsSelf();
+            builder.RegisterType<CourseModel>().AsSelf();
             //builder.RegisterType<StudentRegistrationModel>().AsSelf();
-
             base.Load(builder);
         }
     }

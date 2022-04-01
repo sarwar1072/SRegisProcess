@@ -1,6 +1,7 @@
 ﻿using Framework;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RegistrationProcess.web.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace RegistrationProcess.web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles= "SuperAdmin,Administrator")]
+  //  [Authorize(Roles= "SuperAdmin,Administrator")]
     public class DashboardController : Controller
     {
         private SMDbContext _sMDbContext;
@@ -19,7 +20,10 @@ namespace RegistrationProcess.web.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            ViewBag.countStudent = _sMDbContext.Students.Count();
+            ViewBag.countCourse = _sMDbContext.Courses.Count();
+            var model = new DashboardModel();
+            return View(model);
         }
     }
 }
