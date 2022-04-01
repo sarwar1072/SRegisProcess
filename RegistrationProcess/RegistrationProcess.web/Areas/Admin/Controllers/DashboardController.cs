@@ -22,6 +22,7 @@ namespace RegistrationProcess.web.Areas.Admin.Controllers
         {
             ViewBag.countStudent = _sMDbContext.Students.Count();
             ViewBag.countCourse = _sMDbContext.Courses.Count();
+            ViewBag.countRegisterStudent = _sMDbContext.StudentRegistrations.Count();
             var model = new DashboardModel();
             return View(model);
         }

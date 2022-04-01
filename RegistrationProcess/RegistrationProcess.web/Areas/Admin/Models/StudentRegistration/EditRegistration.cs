@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RegistrationProcess.web.Areas.Admin.Models.StudentRegistration
 {
-    public class EditRegistration:StudentRegitrationBaseModel
+    public class EditRegistration: StudentRegistrationModel
     {
         public int Id { get; set; }
         [Required]

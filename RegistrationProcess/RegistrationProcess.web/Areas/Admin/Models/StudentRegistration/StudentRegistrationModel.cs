@@ -38,7 +38,38 @@ namespace RegistrationProcess.web.Areas.Admin.Models.StudentRegistration
             };
         }
 
-       
+        public IList<SelectListItem> GetStudentList()
+        {
+            IList<SelectListItem> listItems = new List<SelectListItem>();
+
+            foreach (var item in _studentRegistrationService.GetStudents())
+            {
+                var ctg = new SelectListItem
+                {
+                    Text = item.Name,
+                    Value = item.Id.ToString()
+                };
+                listItems.Add(ctg);
+            }
+            return listItems;
+        }
+
+        public IList<SelectListItem> GetCourseList()
+        {
+            IList<SelectListItem> listItems = new List<SelectListItem>();
+
+            foreach (var item in _studentRegistrationService.GetCourses())
+            {
+                var ctg = new SelectListItem
+                {
+                    Text = item.Title,
+                    Value = item.Id.ToString()
+                };
+                listItems.Add(ctg);
+            }
+            return listItems;
+        }
+
         internal string Delete(int Id)
         {
             var deleteRegistration = _studentRegistrationService.DeleteRegistration(Id);

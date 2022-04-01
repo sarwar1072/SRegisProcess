@@ -53,7 +53,52 @@ namespace RegistrationProcess.web.Areas.Admin.Controllers
             }
             return View(model);
         }
+        public IActionResult Edit(int id)
+        {
+            var model = new EditRegistration();
+            model.Load(id);
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(EditRegistration model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    model.Edit();
+                    model.Response = new ResponseModel("edited successfully", ResponseType.Success);
+                    return RedirectToAction("Index");
+                }
+                catch(Exception ex)
+                {
+                    model.Response = new ResponseModel(ex.Message, ResponseType.Failure);
+                }
+            }
+            return View(model);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteRegistration(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = new StudentRegistrationModel();
+                try
+                {
+                    var dataprovider = model.Delete(id);
+                    model.Response = new ResponseModel($"delete{dataprovider} successfully", ResponseType.Success);
+                    return RedirectToAction("Index");
+                }
+                catch(Exception ex)
+                {
+                    model.Response = new ResponseModel(ex.Message, ResponseType.Failure);
+                }
+            }
+            return RedirectToAction("Index");
+        }
         public IActionResult GetRegistration()
         {
             var tableModel = new DataTablesAjaxRequestModel(Request);
