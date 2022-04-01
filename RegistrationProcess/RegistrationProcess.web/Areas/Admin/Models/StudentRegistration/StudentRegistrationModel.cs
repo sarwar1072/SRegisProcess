@@ -67,6 +67,7 @@ namespace RegistrationProcess.web.Areas.Admin.Models.StudentRegistration
             }
             return listItems;
         }
+       
         internal string Delete(int Id)
         {
             var deleteRegistration = _studentRegistrationService.DeleteRegistration(Id);
