@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace RegistrationProcess.web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-  //  [Authorize(Roles= "SuperAdmin,Administrator")]
+   [Authorize(Roles= "SuperAdmin,Administrator")]
     public class DashboardController : Controller
     {
         private SMDbContext _sMDbContext;

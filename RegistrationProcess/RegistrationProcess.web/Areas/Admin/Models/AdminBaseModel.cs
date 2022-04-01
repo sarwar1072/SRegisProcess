@@ -50,6 +50,14 @@ namespace RegistrationProcess.web.Areas.Admin.Models
             {
                 MenuItems = new List<MenuItem> 
                 {
+                    new MenuItem
+                    {
+                        Title = "Register Admin",
+                        Childs = new List<MenuChildItem>
+                        {
+                            new MenuChildItem{ Title = "Create Admin", Url = "/Identities/Register/Registration" }
+                        }
+                    },
                    new MenuItem
                    {
                        Title="Course",
@@ -80,6 +88,18 @@ namespace RegistrationProcess.web.Areas.Admin.Models
                            new MenuChildItem{Title="Add Student",Url="/Admin/StudentRegistration/CreateRegistration/"}
                        }
                    },
+
+                   new MenuItem
+                    {
+                        Title = "Setting",
+                        Childs = new List<MenuChildItem>
+                        {
+                            new MenuChildItem{ Title = "Manage Profile", Url = "/Identity/Account/Manage/Index" },
+                            new MenuChildItem{ Title = "Log Out", Url ="/Identity/Account/Logout"}
+
+                        }
+
+                    }
 
                 }           
             };
