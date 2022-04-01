@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using RegistrationProcess.web.Areas.Admin.Models.Course;
 using RegistrationProcess.web.Areas.Admin.Models.Student;
+using RegistrationProcess.web.Areas.Admin.Models.StudentRegistration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace RegistrationProcess.web
            
             builder.RegisterType<StudentModel>().AsSelf();
             builder.RegisterType<CourseModel>().AsSelf();
-            //builder.RegisterType<StudentRegistrationModel>().AsSelf();
+            builder.RegisterType<StudentRegistrationModel>().AsSelf();
             base.Load(builder);
         }
     }

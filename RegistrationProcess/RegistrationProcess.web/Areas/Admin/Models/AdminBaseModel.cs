@@ -70,7 +70,17 @@ namespace RegistrationProcess.web.Areas.Admin.Models
                            new MenuChildItem{Title="Add Student",Url="/Admin/Student/CreateStudent/"}
                        }
                    },
-                
+
+                   new MenuItem
+                   {
+                       Title="StudentRegistration",
+                       Childs=new List<MenuChildItem>
+                       {
+                           new MenuChildItem{Title="View Register Student",Url="/Admin/StudentRegistration/"},
+                           new MenuChildItem{Title="Add Student",Url="/Admin/StudentRegistration/CreateRegistration/"}
+                       }
+                   },
+
                 }           
             };
         }

@@ -1,4 +1,5 @@
 ﻿using Framework.Services;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,5 +29,37 @@ namespace RegistrationProcess.web.Areas.Admin.Models.StudentRegistration
             };
             _studentRegistrationService.AddRegistration(add);
         }
+        public IList<SelectListItem> GetStudentList()
+        {
+            IList<SelectListItem> listItems = new List<SelectListItem>();
+
+            foreach (var item in _studentRegistrationService.GetStudents())
+            {
+                var ctg = new SelectListItem
+                {
+                    Text = item.Name,
+                    Value = item.Id.ToString()
+                };
+                listItems.Add(ctg);
+            }
+            return listItems;
+        }
+
+        public IList<SelectListItem> GetCourseList()
+        {
+            IList<SelectListItem> listItems = new List<SelectListItem>();
+
+            foreach (var item in _studentRegistrationService.GetCourses())
+            {
+                var ctg = new SelectListItem
+                {
+                    Text = item.Title,
+                    Value = item.Id.ToString()
+                };
+                listItems.Add(ctg);
+            }
+            return listItems;
+        }
+
     }
 }
