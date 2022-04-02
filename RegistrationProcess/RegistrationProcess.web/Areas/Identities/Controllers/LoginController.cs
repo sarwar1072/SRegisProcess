@@ -1,5 +1,6 @@
 ﻿using Membership.Entities;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RegistrationProcess.web.Areas.Identities.Models;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace RegistrationProcess.web.Areas.Identities.Controllers
 {
+    [AllowAnonymous]
     [Area("Identities")]
     public class LoginController : Controller
     {

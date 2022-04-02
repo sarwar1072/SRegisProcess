@@ -1,6 +1,7 @@
 ﻿using Membership.Entities;
 using MemberShip.Contexts;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace RegistrationProcess.web.Areas.Identities.Controllers
 {
+    [Authorize(Roles = "SuperAdmin,Administrator")]
     [Area("Identities")]
     public class RegisterController : Controller
     {

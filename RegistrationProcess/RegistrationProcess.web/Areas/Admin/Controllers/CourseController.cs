@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 using RegistrationProcess.web.Areas.Admin.Models.Course;
 using RegistrationProcess.web.Areas.Admin.Models;
 using Framework;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RegistrationProcess.web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "SuperAdmin,Administrator")]
     [Area("Admin")]
     public class CourseController : Controller
     {

@@ -1,4 +1,5 @@
 ﻿using Membership.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace RegistrationProcess.webAreas.Identities.Models
 {
+      
     public class RegisterModel
     {
         private readonly UserManager<ApplicationUser> _userManager;

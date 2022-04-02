@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Framework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RegistrationProcess.web.Areas.Admin.Models;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace RegistrationProcess.web.Areas.Admin.Controllers
 {
+  //  [Authorize(Roles = "SuperAdmin,Administrator")]
     [Area("Admin")]
     public class StudentRegistrationController : Controller
     {
