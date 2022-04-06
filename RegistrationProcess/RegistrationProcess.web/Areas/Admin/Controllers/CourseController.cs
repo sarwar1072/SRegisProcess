@@ -50,8 +50,7 @@ namespace RegistrationProcess.web.Areas.Admin.Controllers
                 catch(Exception ex)
                 {
                     createCourse.Response = new ResponseModel("Course add failure", ResponseType.Failure);
-                }
-            
+                }           
             }
             return View(createCourse);
         }
