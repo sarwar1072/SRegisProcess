@@ -49,6 +49,7 @@ namespace Framework.Services
             editcourse.Title = course.Title;
             editcourse.Fee = course.Fee;
             editcourse.SeatCount = course.SeatCount;
+            
             _sMUnitOfWork.Save();
         }
 
