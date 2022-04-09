@@ -76,7 +76,6 @@ namespace RegistrationProcess.web.Areas.Admin.Models
                 };
             }
         }
-
         public string GetSortText(string[] columnNames)
         {
             var sortText = new StringBuilder();

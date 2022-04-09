@@ -23,8 +23,6 @@ namespace RegistrationProcess.web.Areas.Admin.Models.Course
                 Fee=Fee
             };
             _courseService.AddCourse(course);
-
-        }
-        
+        }        
     }
 }
