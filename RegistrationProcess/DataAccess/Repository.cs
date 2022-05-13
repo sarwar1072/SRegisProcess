@@ -239,5 +239,27 @@ namespace DataAccess
                     return query.ToList();
             }
         }
+
+        public TEntity GetFirstOrDefault(Expression<Func<TEntity, bool>> filter = null, string includeProperties = null)
+        {
+            IQueryable< TEntity> query = _dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            if (includeProperties != null)
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+
+
+            return query.FirstOrDefault();
+        }
+
     }
 }

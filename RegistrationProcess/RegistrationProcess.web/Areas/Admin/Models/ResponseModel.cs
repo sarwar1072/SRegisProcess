@@ -11,9 +11,7 @@ namespace RegistrationProcess.web.Areas.Admin.Models
         public string Title { set; get; }
         public string IconCssClass { set; get; }
         public string StyleCssClass { set; get; }
-        public ResponseModel()
-        {
-        }
+        public ResponseModel() { }        
         public ResponseModel(string message,ResponseType type )
         {
             if (type == ResponseType.Success)

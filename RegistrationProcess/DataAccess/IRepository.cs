@@ -36,5 +36,7 @@ namespace DataAccess
         IList<TEntity> GetDynamic(Expression<Func<TEntity, bool>> filter = null,
             string orderBy = null,
             string includeProperties = "", bool isTrackingOff = false);
+
+        TEntity GetFirstOrDefault(Expression<Func<TEntity, bool>> filter = null, string includeProperties = null);
     }
 }
