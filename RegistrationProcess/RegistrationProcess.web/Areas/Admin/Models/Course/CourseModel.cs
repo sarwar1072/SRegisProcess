@@ -32,7 +32,6 @@ namespace RegistrationProcess.web.Areas.Admin.Models.Course
                    ).ToArray()
             };
         }
-
         internal string Delete(int Id)
         {
             var deleteCourse = _courseService.Delete(Id);

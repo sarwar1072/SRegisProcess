@@ -17,7 +17,7 @@ namespace Membership.Data
         private readonly RoleManager _roleManager;
 
         private readonly ApplicationUser _superAdminUser, _adminUser;
-        private readonly Role _superAdminRole, _adminRole;
+        private readonly Role _superAdminRole, _adminRole,_customerRole;
 
         public AccountSeed(UserManager userManager, RoleManager roleManager, ApplicationDbContext context)
             : base(context)
@@ -30,6 +30,7 @@ namespace Membership.Data
            
             _superAdminRole = new Role("SuperAdmin");
             _adminRole = new Role("Administrator");
+            _customerRole = new Role("Customer");
            
         }
 
@@ -69,9 +70,7 @@ namespace Membership.Data
                     }
                 }
             }
-
         }
-
         public override async Task SeedAsync()
         {
             await SeedUserAsync();

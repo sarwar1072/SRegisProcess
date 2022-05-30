@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
-using RegistrationProcess.webAreas.Identities.Models;
+using RegistrationProcess.web.Areas.Identities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +14,11 @@ using System.Threading.Tasks;
 
 namespace RegistrationProcess.web.Areas.Identities.Controllers
 {
-    [Authorize(Roles = "SuperAdmin,Administrator")]
+    [AllowAnonymous]
+
+    // [Authorize(Roles = "SuperAdmin,Administrator")]
     [Area("Identities")]
+    //only Administrator could be able to see register button on registration page
     public class RegisterController : Controller
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -30,13 +33,13 @@ namespace RegistrationProcess.web.Areas.Identities.Controllers
         }
 
         [BindProperty]
-        public string ReturnUrl { get; set; }
+       // public string ReturnUrl { get; set; }
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        public async Task<IActionResult> Registration()
+        public async Task<IActionResult> Registration(string returnUrl=null)
         {
             var model = new RegisterModel();
-            //ReturnUrl = returnUrl;
+            model.ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             return View(model);
         }
@@ -44,6 +47,7 @@ namespace RegistrationProcess.web.Areas.Identities.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registration(RegisterModel Input, string returnUrl = null)
         {
+          //  returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
@@ -56,20 +60,21 @@ namespace RegistrationProcess.web.Areas.Identities.Controllers
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    //new register will be assign in SuperAdmin role and 
                     await _userManager.AddToRoleAsync(user, "Administrator");
 
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                    //var callbackUrl = Url.Page(
+                    //    "/Account/ConfirmEmail",
+                    //    pageHandler: null,
+                    //    values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
+                    //    protocol: Request.Scheme);
                     //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                     //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        return RedirectToAction("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
                     else
                     {
@@ -84,6 +89,6 @@ namespace RegistrationProcess.web.Areas.Identities.Controllers
             }
             // If we got this far, something failed, redisplay form
             return View(returnUrl);
-        }
+        }       
     }
 }

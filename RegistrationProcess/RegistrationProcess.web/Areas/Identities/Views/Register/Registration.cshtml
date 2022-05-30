@@ -12,9 +12,9 @@
     <div class="container">
         <div class="forms-container row row d-flex justify-content-center">
             <div class="signin-signup col-md-6 card-body border border-success rounded shadow p-3">
-                <form asp-controller="Register" asp-action="Registration" method="post" class="sign-in-form">
-
+                <form  asp-controller="Register" asp-action="Registration" method="post" >
                     <div>
+                        @*asp-route-returnUrl="@Model.ReturnUrl"*@
                         <h2 st class="title text-center">Register New Admin</h2>
                         <hr /><br />
                     </div>
@@ -54,20 +54,17 @@
 
                         <p asp-validation-for="ConfirmPassword" class="text-danger"></p>
                     </div>
-
-                    <div>
-                        <button type="submit" class=" text-center btn btn-success col-md-3">Register</button>
-                    </div>
-
+                    @*@if (User.IsInRole("Administrator"))
+                    {*@
+                        <div>
+                            <button type="submit" class=" text-center btn btn-success col-md-3">Register</button>
+                        </div>                        
+                     @*}*@
                 </form>
             </div>
         </div>
-
     </div>
 </body>
-
-
-
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

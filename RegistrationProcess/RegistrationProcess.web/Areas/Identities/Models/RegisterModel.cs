@@ -1,4 +1,5 @@
 ﻿using Membership.Entities;
+using Membership.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -7,18 +8,21 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RegistrationProcess.webAreas.Identities.Models
+namespace RegistrationProcess.web.Areas.Identities.Models
 {
-      
+    //only SuperAdmin can register and will see registration button
     public class RegisterModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
+
+        private readonly IUserService _userService;
         public RegisterModel()
         {
         }
-        public RegisterModel(UserManager<ApplicationUser> userManager)
+        public RegisterModel(UserManager<ApplicationUser> userManager, IUserService userService)
         {
             _userManager = userManager;
+            _userService = userService;
         }
         [Required]
         [Display(Name ="Name")]
@@ -40,6 +44,8 @@ namespace RegistrationProcess.webAreas.Identities.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        public string ReturnUrl { get; set; }
+
 
         //public async Task RegistrationAsync()
         //{

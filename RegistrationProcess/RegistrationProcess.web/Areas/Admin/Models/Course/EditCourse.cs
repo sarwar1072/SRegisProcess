@@ -36,7 +36,6 @@ namespace RegistrationProcess.web.Areas.Admin.Models.Course
                 Title = course.Title;
                 Fee = course.Fee;
                 SeatCount = course.SeatCount;
-
             }
         }
        

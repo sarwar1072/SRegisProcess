@@ -13,7 +13,6 @@ namespace RegistrationProcess.web.Areas.Admin.Models.Course
         public int Fee { get; set; }
         public CreateCourse() : base() { }
         public CreateCourse(ICourseService courseService) : base(courseService) { }
-
         public void Create()
         {
             var course = new Framework.Entities.Course()

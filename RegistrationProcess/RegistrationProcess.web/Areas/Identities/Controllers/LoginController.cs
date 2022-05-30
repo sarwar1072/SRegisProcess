@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace RegistrationProcess.web.Areas.Identities.Controllers
 {
     [AllowAnonymous]
-    [Area("Identities")]
+    [Area("Identities")]  
     public class LoginController : Controller
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -21,23 +21,20 @@ namespace RegistrationProcess.web.Areas.Identities.Controllers
             SignInManager<ApplicationUser> signInManager
             )
         {
-
             _userManager = userManager;
             _signInManager = signInManager;
-
         }
         [BindProperty]
-
-        public string ReturnUrl { get; set; }
-
+        //public string ReturnUrl { get; set; }
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
         public string ErrorMessage { get; set; }
-
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string returnUrl=null)
         {
             var model = new LoginModel();
-
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            //returnUrl = returnUrl ?? Url.Content("~/");
+            model.ReturnUrl = returnUrl;
+
 
             return View(model);
         }

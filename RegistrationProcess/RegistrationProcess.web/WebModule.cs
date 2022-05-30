@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Internal;
 using RegistrationProcess.web.Areas.Admin.Models.Course;
 using RegistrationProcess.web.Areas.Admin.Models.Student;
 using RegistrationProcess.web.Areas.Admin.Models.StudentRegistration;
@@ -21,7 +22,8 @@ namespace RegistrationProcess.web
         }
         protected override void Load(ContainerBuilder builder)
         {
-           
+
+
             builder.RegisterType<StudentModel>().AsSelf();
             builder.RegisterType<CourseModel>().AsSelf();
             builder.RegisterType<StudentRegistrationModel>().AsSelf();
